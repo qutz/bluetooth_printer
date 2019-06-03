@@ -2,7 +2,7 @@ name: bluetooth_printer
 description: A new flutter plugin project.
 version: 0.0.1
 author: frank <13926187239@163.com>
-homepage: http://www.guoran.red
+homepage: https://github.com/qutz/bluetooth_printer
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
