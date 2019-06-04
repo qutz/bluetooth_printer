@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('连接状态: ${connect == 1 ? '连接成功': '连接失败'}'),
+            Text('连接状态: ${connect == 1 ? '连接成功' : '连接失败'}'),
             RaisedButton(
               onPressed: () async {
                 var result = await BluetoothPrinter.beginSearch();
@@ -97,28 +97,39 @@ class _MyAppState extends State<MyApp> {
               },
               child: Text('停止搜索'),
             ),
-            Container(
-              height: 300,
-              child: devices.length > 0
-                  ? ListView.builder(
-                      itemCount: devices.length,
-                      itemBuilder: (context, index) {
-                        return new ListTile(
-                          onTap: () async {
-                            await BluetoothPrinter.pairBluetooth(
-                                mac: devices[index]["mac"]);
-                          },
-                          leading: new Icon(Icons.usb),
-                          title: new Text(devices[index]["name"] +
-                              " " +
-                              devices[index]["mac"]),
-                          subtitle: new Text(
-                              devices[index]["state"] == 1 ? '已配对' : '未配对'),
-                        );
-                      },
-                    )
-                  : Text('蓝牙设备列表'),
-            )
+            RaisedButton(
+              onPressed: () async {
+                print(await BluetoothPrinter.printfTestPage());
+              },
+              child: Text('打印测试页'),
+            ),
+            RaisedButton(
+              onPressed: () async {
+                print(
+                    await BluetoothPrinter.printfText(text: '这是测试flutter打印插件\n\n\n\n'));
+              },
+              child: Text('打印文本'),
+            ),
+            Expanded(
+                child: devices.length > 0
+                    ? ListView.builder(
+                        itemCount: devices.length,
+                        itemBuilder: (context, index) {
+                          return new ListTile(
+                            onTap: () async {
+                              await BluetoothPrinter.pairBluetooth(
+                                  mac: devices[index]["mac"]);
+                            },
+                            leading: new Icon(Icons.usb),
+                            title: new Text(devices[index]["name"] +
+                                " " +
+                                devices[index]["mac"]),
+                            subtitle: new Text(
+                                devices[index]["state"] == 1 ? '已配对' : '未配对'),
+                          );
+                        },
+                      )
+                    : Text('蓝牙设备列表'))
           ],
         ),
       ),

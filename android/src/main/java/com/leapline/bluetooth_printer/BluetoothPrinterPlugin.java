@@ -161,6 +161,7 @@ public class BluetoothPrinterPlugin implements MethodCallHandler {
       }
       case "printfTable":
       {
+        @SuppressWarnings("unchecked")
         List<List<String>> dates = (List<List<String>>) arguments.get("dates");
         int effectiveWidth = (int) arguments.get("effectiveWidth");
         printfESCManager.printfTable(dates,effectiveWidth);
