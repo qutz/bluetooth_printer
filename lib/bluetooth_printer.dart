@@ -58,6 +58,11 @@ class BluetoothPrinter {
   static Future<bool> initPrinter() async =>
       await _channel.invokeMethod('initPrinter');
 
+  static Future<bool> printPlusLine({@required int effectiveWidth}) async {
+    final Map<String, dynamic> params = <String, dynamic>{'effectiveWidth': effectiveWidth};
+    return await _channel.invokeMethod('printPlusLine', params);
+  }
+
   static Future<bool> printfText({@required String text}) async {
     final Map<String, dynamic> params = <String, dynamic>{'text': text};
     return await _channel.invokeMethod('printfText', params);
@@ -97,6 +102,11 @@ class BluetoothPrinter {
     return await _channel.invokeMethod('printfTable', params);
   }
 
+  static Future<bool> setShowPosition({@required int position}) async {
+    final Map<String, dynamic> params = <String, dynamic>{'position': position};
+    return await _channel.invokeMethod('setShowPosition', params);
+  }
+
   static Future<bool> setPrinterCode() async =>
       await _channel.invokeMethod('setPrinterCode');
 
@@ -114,19 +124,4 @@ class BluetoothPrinter {
 
   static Future<bool> setDefaultPrinterFontSize() async =>
       await _channel.invokeMethod('setDefaultPrinterFontSize');
-}
-
-class BarcodeType {
-  final int UPC_A = 0;
-  final int UPC_E = 1;
-  final int JAN13 = 2;
-  final int JAN8 = 3;
-  final int CODE39 = 4;
-  final int ITF = 5;
-  final int CODABAR = 6;
-  final int CODE93 = 72;
-  final int CODE128 = 07;
-  final int PDF417 = 100;
-  final int DATAMATRIX = 101;
-  final int QRCODE = 102;
 }

@@ -141,12 +141,12 @@ public class BluetoothPrinterPlugin implements MethodCallHandler {
       }
       case "printfBarcode":
       {
-        byte barcodeType = (byte) arguments.get("barcodeType");
+        int barcodeType = (int) arguments.get("barcodeType");
         int param1 = (int) arguments.get("param1");
         int param2 = (int) arguments.get("param2");
         int param3 = (int) arguments.get("param3");
         String content = (String) arguments.get("content");
-        printfESCManager.printfBarcode(barcodeType,param1,param2,param3,content);
+        printfESCManager.printfBarcode((byte)barcodeType,param1,param2,param3,content);
         result.success(true);
         break;
       }
@@ -168,9 +168,24 @@ public class BluetoothPrinterPlugin implements MethodCallHandler {
         result.success(true);
         break;
       }
+      case "printPlusLine":
+      {
+        int effectiveWidth = (int) arguments.get("effectiveWidth");
+        printfESCManager.printPlusLine(effectiveWidth);
+        result.success(true);
+        break;
+      }
+      case "setShowPosition":
+      {
+        int position = (int) arguments.get("position");
+        printfESCManager.setShowPosition(position);
+        result.success(true);
+        break;
+      }
       case "setPrinterCode":
       {
-        bluetoothManager.close();
+        String code = (String) arguments.get("code");
+        printfESCManager.setPrinterCode(code);
         result.success(true);
         break;
       }

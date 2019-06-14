@@ -33,6 +33,6 @@ android {
         disable 'InvalidPackage'
     }
     dependencies {
-        implementation 'com.github.13671447200:Printer-SDK:V1.0'
+        implementation 'com.github.qutz:Printer-Android-SDK:V1.1.6'
     }
 }
